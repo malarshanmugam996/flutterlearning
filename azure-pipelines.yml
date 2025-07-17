@@ -4,15 +4,17 @@ trigger:
       - main
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-latest'
 
 steps:
-  - task: UseFlutterVersion@0
-    inputs:
-      version: '3.29.3' # Adjust as needed
+  - script: |
+      git clone https://github.com/flutter/flutter.git -b stable
+      export PATH="$PATH:`pwd`/flutter/bin"
+      flutter --version
+    displayName: 'Install Flutter'
 
   - script: |
       flutter pub get
       flutter analyze
       flutter test
-    displayName: 'Install dependencies & run tests'
+    displayName: 'Build & Test Flutter App'
