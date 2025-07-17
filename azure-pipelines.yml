@@ -9,7 +9,7 @@ pool:
 steps:
   - task: UseFlutterVersion@0
     inputs:
-      version: '3.10.0' # Adjust as needed
+      version: '3.29.3' # Adjust as needed
 
   - script: |
       flutter pub get
